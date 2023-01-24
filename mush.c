@@ -5,6 +5,15 @@
 #include <sys/wait.h>
 
 int run_command(char* args[]) {
+    if (strcmp(args[0], "cd") == 0) {
+        if (chdir(args[1]) == -1) {
+            perror("");
+            return -1;
+        }
+        else return 0;
+    }
+    else if (strcmp(args[0], "exit") == 0) exit(0);
+
     int pid = fork();
     if (pid == 0)
     {
@@ -35,10 +44,6 @@ int main(void) {
             args[i] = arg;
         }
 
-        if (strcmp(args[0], "cd") == 0) {
-            if (chdir(args[1]) == -1) perror("");
-        }
-        else if (strcmp(args[0], "exit") == 0) exit(0);
-        else run_command(args);
+        run_command(args);
     }
 }
