@@ -8,9 +8,18 @@ int main(void) {
     while (1)
     {
         printf("$ ");
-        char test[2048];
-        fgets(test, 2048, stdin);
+        char input[2048];
+        fgets(input, 2048, stdin);
 
-        printf(test);
+        char* args[128];
+        char* arg = strtok(input, " ");
+        args[0] = arg;
+
+        for (int i = 1; arg != NULL; i++)
+        {
+            printf("%s ", arg);
+            arg = strtok(NULL, " ");
+            args[i] = arg;
+        }
     }
 }
