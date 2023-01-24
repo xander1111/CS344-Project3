@@ -35,6 +35,9 @@ int main(void) {
             args[i] = arg;
         }
 
-        run_command(args);
+        if (strcmp(args[0], "cd") == 0) {
+            if (chdir(args[1]) == -1) perror("");
+        }
+        else run_command(args);
     }
 }
