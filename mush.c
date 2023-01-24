@@ -38,6 +38,7 @@ int main(void) {
         if (strcmp(args[0], "cd") == 0) {
             if (chdir(args[1]) == -1) perror("");
         }
+        else if (strcmp(args[0], "exit") == 0) exit(0);
         else run_command(args);
     }
 }
