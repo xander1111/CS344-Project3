@@ -12,14 +12,15 @@ int main(void) {
         fgets(input, 2048, stdin);
 
         char* args[128];
-        char* arg = strtok(input, " ");
+        char* arg = strtok(input, " \n");
         args[0] = arg;
 
         for (int i = 1; arg != NULL; i++)
         {
-            printf("%s ", arg);
-            arg = strtok(NULL, " ");
+            arg = strtok(NULL, " \n");
             args[i] = arg;
         }
+
+        execvp(args[0], args);
     }
 }
