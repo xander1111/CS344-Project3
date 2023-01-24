@@ -4,6 +4,20 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+int run_command(char* args[]) {
+    int pid = fork();
+    if (pid == 0)
+    {
+        execvp(args[0], args);
+
+        perror("Error running program");
+        exit(1);
+    }
+
+    wait(NULL);
+    return 0;
+}
+
 int main(void) {
     while (1)
     {
@@ -21,6 +35,6 @@ int main(void) {
             args[i] = arg;
         }
 
-        execvp(args[0], args);
+        run_command(args);
     }
 }
