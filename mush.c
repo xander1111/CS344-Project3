@@ -31,6 +31,8 @@ int main(void) {
     while (1)
     {
         printf("$ ");
+        fflush(stdout);
+
         char input[2048];
         fgets(input, 2048, stdin);
 
